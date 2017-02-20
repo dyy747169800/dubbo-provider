@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <!-- Application name -->
+    <!-- 创建应用的名字 -->
+    <dubbo:application name="dubbo-provider"/>
+    <!-- 注册中心的地址 -->
+    <dubbo:registry address="zookeeper://192.168.117.128:2181"/>
+    <!-- dubbo服务使用的端口-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!-- 使用注解方式暴露接口 在serviceImpl头上添加service注解 这个是dubbo的注解 -->
+    <dubbo:annotation package="com.uban.provider.service"  />
+    <!-- 加入spring注解扫描 这个和spring是一样的配置需要扫描的路径-->
+    <context:component-scan base-package="com.uban.provider.service"/>
+
+    <!--这种是直接暴露接口，不通过注解
+      <dubbo:service interface="com.uban.service.DubboDemoService" ref="dubboDemoService"/>
+      <bean id="dubboDemoService"
+            class="com.uban.provider.service.DubboDemoServiceImpl">
+      </bean>-->
+</beans>
