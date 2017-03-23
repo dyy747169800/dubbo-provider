@@ -53,4 +53,5 @@
 	</bean>
 	<!--这里引入dubbo的配置-->
 	<import resource="dubbo-config.xml"></import>
+	<import resource="solr.xml"></import>
  </beans>
